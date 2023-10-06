@@ -50,8 +50,9 @@
   <h2>Waiting on</h2>
 
   <ul>
+    <% @list_of_deliveries.each do |a_delivery| %>
       <li>
-        <div>Water</div>
+        <div><%= a_delivery.description %></div>
 
         <div style="">
           Supposed to arrive on
@@ -72,6 +73,7 @@
         
         <br>
       </li>
+    <% end %>
   </ul>
 </div>
 

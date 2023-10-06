@@ -9,5 +9,7 @@
 #  updated_at  :datetime         not null
 #  user_id     :integer
 #
+
+# TODO: How to add arrive_by field to table
 class Delivery < ApplicationRecord
 end
