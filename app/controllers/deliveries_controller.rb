@@ -20,6 +20,8 @@ class DeliveriesController < ApplicationController
   def create
     the_delivery = Delivery.new
     the_delivery.description = params.fetch("query_description")
+    the_delivery.arrive_by = params.fetch("query_supposed_to_arrive_on")
+    the_delivery.details = params.fetch("query_details")
     the_delivery.received = params.fetch("query_received", false)
 
     if the_delivery.valid?
@@ -30,20 +32,19 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  # def update
-  #   the_id = params.fetch("path_id")
-  #   the_delivery = Delivery.where({ :id => the_id }).at(0)
+  def update
+    the_id = params.fetch("path_id")
+    the_delivery = Delivery.where({ :id => the_id }).at(0)
 
-  #   the_delivery.description = params.fetch("query_description")
-  #   the_delivery.received = params.fetch("query_received", false)
+    the_delivery.received = true
 
-  #   if the_delivery.valid?
-  #     the_delivery.save
-  #     redirect_to("/deliveries/#{the_delivery.id}", { :notice => "Delivery updated successfully."} )
-  #   else
-  #     redirect_to("/deliveries/#{the_delivery.id}", { :alert => the_delivery.errors.full_messages.to_sentence })
-  #   end
-  # end
+    if the_delivery.valid?
+      the_delivery.save
+      redirect_to("/deliveries", { :notice => "Delivery updated successfully."} )
+    else
+      redirect_to("/deliveries", { :alert => the_delivery.errors.full_messages.to_sentence })
+    end
+  end
 
   def destroy
     the_id = params.fetch("path_id")

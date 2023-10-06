@@ -46,52 +46,59 @@
 
 <hr>
 
-<div>
+<div style="background-color: lightgoldenrodyellow;">
   <h2>Waiting on</h2>
 
   <ul>
     <% @list_of_deliveries.each do |a_delivery| %>
-      <li>
-        <div><%= a_delivery.description %></div>
+      <% if a_delivery.received != true %>
+        <li>
+          <div><%= a_delivery.description %></div>
 
-        <div style="">
-          <%= a_delivery.arrive_by %>
-        </div>
+          <div style="">
+            Supposed to arrive on <%= a_delivery.arrive_by.to_s.split(' ').first %>
+          </div>
 
-        <div>
-          <%= a_delivery.details %>
-        </div>
+          <div>
+            <%= a_delivery.details %>
+          </div>
 
-        <div>
-          <form action="/modify_delivery/18313" method="post">
-            <input type="hidden" name="arrived" value="true">
+          <div>
+            <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
+              <input type="hidden" name="arrived" value="true">
 
-            <button>Mark as received</button>
-          </form>
-        </div>
-        
-        <br>
-      </li>
+              <button>Mark as received</button>
+            </form>
+          </div>
+          
+          <br>
+        </li>
+      <% end %>
+
     <% end %>
   </ul>
 </div>
 
 <hr>
 
-<div class="received">
+<div style="background-color: lightgreen;">
   <h2>Received</h2>
 
   <ul>
-      <li>
-        <div>Food</div>
+    <% @list_of_deliveries.each do |a_delivery| %>
+      <% if a_delivery.received == true %>
+        <li>
+          <div><%= a_delivery.description %></div>
 
-        <div>
-          <small>
-            Updated 17 minutes ago
+          <div>
+            <small>
+              Updated <%= a_delivery.updated_at %>
 
-            <a href="/delete_delivery/18312">Delete</a>
-          </small>
-        </div>
-      </li>
+              <a href="/delete_delivery/<%= a_delivery.id %>">Delete</a>
+            </small>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
   </ul>
 </div>
