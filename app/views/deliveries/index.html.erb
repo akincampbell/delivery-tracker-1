@@ -46,7 +46,7 @@
 
 <hr>
 
-<div class="waiting_on">
+<div>
   <h2>Waiting on</h2>
 
   <ul>
@@ -55,12 +55,11 @@
         <div><%= a_delivery.description %></div>
 
         <div style="">
-          Supposed to arrive on
-          2023-10-07
+          <%= a_delivery.arrive_by %>
         </div>
 
         <div>
-          need this
+          <%= a_delivery.details %>
         </div>
 
         <div>

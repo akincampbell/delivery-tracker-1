@@ -7,15 +7,15 @@ class DeliveriesController < ApplicationController
     render({ :template => "deliveries/index" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
+  # def show
+  #   the_id = params.fetch("path_id")
 
-    matching_deliveries = Delivery.where({ :id => the_id })
+  #   matching_deliveries = Delivery.where({ :id => the_id })
 
-    @the_delivery = matching_deliveries.at(0)
+  #   @the_delivery = matching_deliveries.at(0)
 
-    render({ :template => "deliveries/show" })
-  end
+  #   render({ :template => "deliveries/show" })
+  # end
 
   def create
     the_delivery = Delivery.new
@@ -30,20 +30,20 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  def update
-    the_id = params.fetch("path_id")
-    the_delivery = Delivery.where({ :id => the_id }).at(0)
+  # def update
+  #   the_id = params.fetch("path_id")
+  #   the_delivery = Delivery.where({ :id => the_id }).at(0)
 
-    the_delivery.description = params.fetch("query_description")
-    the_delivery.received = params.fetch("query_received", false)
+  #   the_delivery.description = params.fetch("query_description")
+  #   the_delivery.received = params.fetch("query_received", false)
 
-    if the_delivery.valid?
-      the_delivery.save
-      redirect_to("/deliveries/#{the_delivery.id}", { :notice => "Delivery updated successfully."} )
-    else
-      redirect_to("/deliveries/#{the_delivery.id}", { :alert => the_delivery.errors.full_messages.to_sentence })
-    end
-  end
+  #   if the_delivery.valid?
+  #     the_delivery.save
+  #     redirect_to("/deliveries/#{the_delivery.id}", { :notice => "Delivery updated successfully."} )
+  #   else
+  #     redirect_to("/deliveries/#{the_delivery.id}", { :alert => the_delivery.errors.full_messages.to_sentence })
+  #   end
+  # end
 
   def destroy
     the_id = params.fetch("path_id")

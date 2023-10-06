@@ -3,7 +3,9 @@
 # Table name: deliveries
 #
 #  id          :integer          not null, primary key
+#  arrive_by   :datetime
 #  description :string
+#  details     :string
 #  received    :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
